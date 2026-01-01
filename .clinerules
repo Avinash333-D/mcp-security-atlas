@@ -1,0 +1,35 @@
+# Security Scope & Safety Guardrails
+
+## ⚠️ CRITICAL: Scope Enforcement
+Before executing any tool (Nmap, ZAP, Burp, Chrome), you MUST verify the target against the `active_scope.txt` file.
+
+## 🚫 Restricted Domains (DO NOT SCAN)
+You are strictly prohibited from interacting with or scanning the following:
+- Any domain ending in `.gov`, `.mil`, `.edu`, or `.int`.
+- Infrastructure providers: `*.amazonaws.com` (unless explicitly in scope), `*.azure.com`, `*.google.com`.
+- Any IP address in the private ranges: `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`.
+- Your own local machine (`localhost`, `127.0.0.1`) unless testing a specific local lab.
+
+## 🛠️ Tool Execution Rules
+1. **Rate Limiting:** Do not exceed 5 requests per second in the Browser MCP or ZAP.
+2. **Identification:** Always set a custom User-Agent in Browser/ZAP: `Roo-Automated-Security-Researcher-Project`.
+3. **Validation:** If you find a URL in the browser that is NOT in your `active_scope.txt`, you must ABORT the attack phase for that specific URL.
+
+# Rule: Financial Priority
+- Before starting a scan, Roo must confirm the presence of a "Bounty Table" on the program page.
+- IF "Bounty Table" is missing AND "Safe Harbor" is present, categorize as VDP.
+- DO NOT execute Nmap or ZAP on VDP targets unless the user provides the override command: "Proceed with VDP".
+- Logic: Paid BBP > Points VDP.
+
+## 📧 Reporting Guardrails
+- Never send raw logs via email; always summarize into the Professional Report format.
+- Ensure the Gmail MCP only sends to the verified address: [YOUR_EMAIL@GMAIL.COM].
+The Layout:
+
+Header: Assessment Report for [Target] | [Date] | [Overall Risk Score]
+
+Table of Contents: Linked sections for fast navigation.
+
+Findings Table: | Vulnerability | Severity | Tool Used | Status | | :--- | :--- | :--- | :--- | | SQL Injection | Critical | ZAP/Burp | Verified |
+
+Proof of Concept: Step-by-step "How I found it."

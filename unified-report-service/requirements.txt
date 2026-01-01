@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic
+reportlab
+jinja2
+cvss
+requests
+python-dotenv

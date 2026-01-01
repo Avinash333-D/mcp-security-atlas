@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assessment Report for {{ target }} | {{ date }} | Overall Risk Score: {% if summary.high > 0 %}High{% elif summary.medium > 0 %}Medium{% else %}Low{% endif %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2 { color: #333; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        .severity-high { color: red; }
+        .severity-medium { color: orange; }
+        .severity-low { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Assessment Report for {{ target }} | {{ date }} | Overall Risk Score: {% if summary.high > 0 %}High{% elif summary.medium > 0 %}Medium{% else %}Low{% endif %}</h1>
+
+    <h2>Table of Contents</h2>
+    <ul>
+        <li><a href="#executive-summary">Executive Summary</a></li>
+        <li><a href="#findings-table">Findings Table</a></li>
+        <li><a href="#proof-of-concept">Proof of Concept</a></li>
+    </ul>
+
+    <h2 id="executive-summary">Executive Summary</h2>
+    <p>This report provides a high-level risk assessment of the target {{ target }}. The scan identified {{ summary.high }} high-risk, {{ summary.medium }} medium-risk, and {{ summary.low }} low-risk vulnerabilities.</p>
+
+    <h2 id="findings-table">Findings Table</h2>
+    <table>
+        <tr>
+            <th>Vulnerability</th>
+            <th>Severity</th>
+            <th>Tool Used</th>
+            <th>Status</th>
+        </tr>
+        {% for finding in findings %}
+        <tr>
+            <td>{{ finding.description }}</td>
+            <td class="severity-{{ finding.severity|lower }}">{{ finding.severity }}</td>
+            <td>{{ finding.tool }}</td>
+            <td>{% if finding.severity == 'error' %}Error{% else %}Verified{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2 id="proof-of-concept">Proof of Concept</h2>
+    {% for finding in findings %}
+    <h3>{{ finding.description }}</h3>
+    <p><strong>Step-by-step "How I found it":</strong></p>
+    <ol>
+        <li>Scanned the target {{ finding.url }} using {{ finding.tool }}.</li>
+        <li>Executed command or request as per tool configuration.</li>
+        <li>Observed the output: {{ finding.evidence }}</li>
+        <li>Determined impact: {{ finding.impact }}</li>
+        <li>Recommended remediation: {{ finding.remediation }}</li>
+    </ol>
+    {% endfor %}
+</body>
+</html>

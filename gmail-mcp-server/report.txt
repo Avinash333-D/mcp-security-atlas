@@ -1,0 +1,33 @@
+Starting Nmap 7.80 ( https://nmap.org ) at 2025-12-15 21:58 India Standard Time
+Nmap scan report for 192.168.56.1
+Host is up (0.0019s latency).
+Not shown: 65524 closed ports
+PORT      STATE    SERVICE       VERSION
+135/tcp   open     msrpc         Microsoft Windows RPC
+137/tcp   filtered netbios-ns
+139/tcp   open     netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp   open     microsoft-ds?
+5040/tcp  open     unknown
+49664/tcp open     msrpc         Microsoft Windows RPC
+49665/tcp open     msrpc         Microsoft Windows RPC
+49666/tcp open     msrpc         Microsoft Windows RPC
+49667/tcp open     msrpc         Microsoft Windows RPC
+49668/tcp open     msrpc         Microsoft Windows RPC
+49675/tcp open     msrpc         Microsoft Windows RPC
+Device type: general purpose
+Running: Microsoft Windows 10
+OS CPE: cpe:/o:microsoft:windows_10:1607
+OS details: Microsoft Windows 10 1607
+Network Distance: 0 hops
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2025-12-15T16:30:09
+|_  start_date: N/A
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 121.15 seconds

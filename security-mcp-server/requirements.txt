@@ -1,0 +1,7 @@
+mcp
+requests
+python-dotenv
+cvss
+jinja2
+reportlab
+beautifulsoup4
